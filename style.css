@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "Inconsolata";
+    src: url(font/Inconsolata-VariableFont_wdth\,wght.ttf);
+}
+
 #canvasContainer {
     min-width: 720px;
     max-width: 720px;
@@ -17,18 +22,51 @@
     background-color:white;
 }
 
-#reset {
-    color: white;
+button{
     border-style: solid;
-    border-radius: 12px;
+    border-radius: 24px;
     border-color: rgb(201, 201, 201);
     box-shadow: 0px 12px rgb(112, 112, 112);
     font-size: 48px;
-    background-color: red;
     border-width: 12px;
-    font-weight:900px;
+    font-weight: 900;
     padding: 12px;
-    margin:12px;
+    margin: 12px;
+    text-align: center;
+}
+
+button:active{
+    box-shadow: 0px 0px;
+    transform: translateY(12px);
+}
+
+#reset {
+    color: white;
+    background-color: red;
+}
+
+#eraser{
+    border-color: rgb(255, 141, 158);
+    color: rgb(255, 141, 158);
+    background-color: white;
+    box-shadow: 0px 12px rgb(168, 56, 73);
+}
+
+#eraser:hover{
+    background-color: whitesmoke;
+}
+
+#eraser:active{
+    background-color:rgb(201, 201, 201);
+    box-shadow: 0px 0px;
+}
+
+#reset:hover{
+    background-color: rgb(200, 0, 0);
+}
+
+#reset:active{
+    background-color: rgb(150, 0, 0);
 }
 
 .flex-container{
@@ -39,8 +77,27 @@
 
 #right{
     flex: 0 0 120px;
+    display: inline-block;
 }
 
 .flex-container>div{
     flex-grow: 0;
+}
+
+h2{
+    font-family: "Inconsolata";
+    font-weight: 800;
+    font-size: 32px;
+}
+
+p{
+    font-family: "Inconsolata";
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.slidecontainer{
+    display:grid;
+    justify-content: center;
 }

@@ -1,3 +1,4 @@
+//Creates the canvas element with the cells
 class Canvas{
 
     //constructor
@@ -5,6 +6,7 @@ class Canvas{
     constructor(pix){
         //holds the canvas
         this.holder = document.getElementById("papa");
+        //deletes any previous canvases in the big div
         if(this.holder.hasChildNodes()){
             this.holder.removeChild(this.holder.firstChild);
         }
@@ -89,9 +91,14 @@ class Canvas{
 
         this.resetb.onclick = ()=>{
             let yn = prompt("Are you sure you want to reset? (yes/no)");
-            yn = yn.toLowerCase();
-            if(yn == "yes" || yn == "y"){
-                this.reset();
+            try{
+                yn = yn.toLowerCase();
+                if(yn == "yes" || yn == "y"){
+                    this.reset();
+                }
+            }
+            catch(err){
+                console.log("User cancelled the request")
             }
         }
         //sets up the cells in the canvas
@@ -122,15 +129,18 @@ class Canvas{
     }
 }
 
+//creates canvases when changing the size
 class canvasHandler{
     
     //empty constructor
     constructor(){
-        console.log(document.getElementsByClassName("slider").item(0));
+        //the slider element
         this.slider = document.getElementsByClassName("slider").item(0);
+        //initializes the canvas with the value in the slider
         this.slider.oninput = () => {
             this.handleCanvas(this.slider.value);
         }
+        //the text element for the slider
         this.pixelCount = document.getElementById("pixelCount");
     }
 
@@ -142,6 +152,7 @@ class canvasHandler{
         this.updatePixels();
     }
 
+    //updates the text for the slider
     updatePixels(){
         let str = this.slider.value + " x " + this.slider.value;
         this.pixelCount.textContent = str;

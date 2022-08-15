@@ -2,22 +2,33 @@
 <html lang="en">
     <body>
         <div class = "flex-container">
+
             <!--left side-->
             <div id = "papa">
             </div>
+
             <!--right side - contains options-->
-            <div class="flex-container" id="right">
+            <div id="right">
+                <!--Eraser button-->
                 <button id="eraser" class="flex-item">
-                    eraser
+                    Eraser
                 </button>
+
+                <!--Reset button-->
                 <button id="reset" class="flex-item">
                     <b>RESET</b> 
                 </button>
+
+                <!--Slider-->
                 <div class="slidecontainer flex-item">
+                    <h2>
+                        Canvas size:
+                    </h2>
                     <input type="range" min="1" max="100" value="16" class="slider">
                     <p id="pixelCount">
                     </p>
                 </div>
+
             </div>
         </div>
         <script src='script.js'></script>
