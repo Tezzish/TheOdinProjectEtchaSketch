@@ -33,7 +33,9 @@ class Canvas{
 
     //sets up the canvas with the buttons 
     setUp(){
+
         //checks if the mouse is pressed on the body and allows the user to draw
+
         //starts drawing if the mouse button is pressed
         this.canvasContainer.addEventListener("mousedown", () => {
             this.mousebool = true;
@@ -61,6 +63,7 @@ class Canvas{
 
         //squares the number to get the total number of cells in the canvas
         let nocells = Math.pow(this.cells, 2);
+
         //creates the cells of the canvas 
         for(var i=0; i<nocells; i++) {
             const child = document.createElement("div");
@@ -81,6 +84,7 @@ class Canvas{
                 auto += "auto ";
             }
         }
+        //makes the cells in the canvas arrange into a square
         canvasContainer.style.gridTemplateColumns = auto;
 
         this.resetb.onclick = ()=>{
@@ -90,7 +94,7 @@ class Canvas{
                 this.reset();
             }
         }
-
+        //sets up the cells in the canvas
         this.divsSetUp();
     }
 
@@ -126,22 +130,25 @@ class canvasHandler{
         this.slider = document.getElementsByClassName("slider").item(0);
         this.slider.oninput = () => {
             this.handleCanvas(this.slider.value);
-        } 
+        }
+        this.pixelCount = document.getElementById("pixelCount");
     }
-
-    
-
 
     //function that initializes the canvas
     handleCanvas(pix){
         let canvas = new Canvas(pix);
         canvas.setUp();
         canvas.reset();
+        this.updatePixels();
+    }
+
+    updatePixels(){
+        let str = this.slider.value + " x " + this.slider.value;
+        this.pixelCount.textContent = str;
     }
 }
 
+//this part acts as the main
 let c = new canvasHandler();
+//the default size is 16
 c.handleCanvas(16);
-
-
-

@@ -28,13 +28,19 @@
     border-width: 12px;
     font-weight:900px;
     padding: 12px;
+    margin:12px;
 }
 
 .flex-container{
     display:flex;
     flex: 0;
+    flex-direction: row;
 }
 
 #right{
-    flex:1;
+    flex: 0 0 120px;
+}
+
+.flex-container>div{
+    flex-grow: 0;
 }
