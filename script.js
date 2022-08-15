@@ -11,6 +11,7 @@ let mousebool = false;
 body.addEventListener("mousedown", () => {
     mousebool = true;
     console.log("started");
+    event.preventDefault();
 });
 body.addEventListener("mouseup", () => {
     mousebool = false;
@@ -24,7 +25,7 @@ let colour = "black";
 let eraserBool = false;
 
 //gets the number of cells on each side of the canvas
-let cells = prompt("How many pixels for each side");
+let cells = 16;
 //squares the number of cells on each side of the canvas to get the total number of cells
 let nocells = Math.pow(cells, 2);
 //sets wh to the maximum width/height of the cells
@@ -76,6 +77,9 @@ divs.forEach((child)=>{
             child.style.backgroundColor = colour;
         }
     })
+    child.addEventListener("mousedown", () =>{
+        child.style.backgroundColor = colour;
+    });
 })
 
 function reset(){
