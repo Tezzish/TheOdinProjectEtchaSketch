@@ -1,4 +1,4 @@
-#canvasContainer{
+#canvasContainer {
     min-width: 720px;
     max-width: 720px;
     background-color: white;
@@ -15,4 +15,16 @@
 
 .grid-item{
     background-color:black;
+}
+
+#reset {
+    color: white;
+    border-style: solid;
+    border-radius: 12px;
+    border-color: rgb(201, 201, 201);
+    box-shadow: 0px 12px rgb(112, 112, 112);
+    font-size: 48px;
+    background-color: red;
+    border-width: 12px;
+    font-weight:900px;
 }

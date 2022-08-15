@@ -1,9 +1,17 @@
+//all the elements that we need for now
 const canvasContainer = document.getElementById("canvasContainer");
+const body = document.getElementbyTagName("body");
+const eraser = document.getElementById("eraser");
+const resetb = document.getElementById("reset");
+
+let mousebool = false;
 
 let prev_colour = "black";
 let colour = "black";
 
 let eraserBool = false;
+
+
 
 //gets the number of cells on each side of the canvas
 let cells = prompt("How many pixels for each side");
@@ -13,7 +21,6 @@ let nocells = Math.pow(cells, 2);
 let wh = 720/nocells;
 
 //eraser for the cells
-const eraser = document.getElementById("eraser");
 
 eraser.onclick = () => {
     if(eraserBool){
@@ -26,10 +33,7 @@ eraser.onclick = () => {
     }
 }
 
-//turns wh into a string
-wh = toString(wh);
-let str = "background-color: white; " + "min-width: " + wh + "; " + "min-height: " + wh + ";";
-
+//arranges the cells in the canvas
 let auto = "";
 
 for(var i = 0; i < cells; i++){
@@ -40,8 +44,6 @@ for(var i = 0; i < cells; i++){
         auto += "auto ";
     }
 }
-
-console.log(auto);
 
 canvasContainer.style.gridTemplateColumns = auto;
 
@@ -56,8 +58,6 @@ for(var i=0; i<nocells; i++) {
     canvasContainer.appendChild(child);
 }
 
-
-
 const divs = document.querySelectorAll("div.grid-item");
 
 divs.forEach((child)=>{
@@ -65,3 +65,13 @@ divs.forEach((child)=>{
         child.style.backgroundColor = colour;
     })
 })
+
+function reset(){
+    divs.forEach((child)=>{
+        child.style.backgroundColor = "white";
+    })
+}
+
+resetb.onclick = ()=>{
+    reset();
+}
