@@ -1,11 +1,22 @@
 //all the elements that we need for now
 const canvasContainer = document.getElementById("canvasContainer");
-const body = document.getElementsByTagName("body");
+const bodyarr = document.getElementsByTagName("body");
+const body = bodyarr.item(0);
 const eraser = document.getElementById("eraser");
 const resetb = document.getElementById("reset");
 
-//checks if the mouse is pressed on the body
+//checks if the mouse is pressed on the body and allows the user to draw
 let mousebool = false;
+
+body.addEventListener("mousedown", () => {
+    mousebool = true;
+    console.log("started");
+});
+body.addEventListener("mouseup", () => {
+    mousebool = false;
+    console.log("ended");
+});
+
 
 //used for the erase to allow it to be toggled
 let prev_colour = "black";
@@ -59,8 +70,11 @@ for(var i=0; i<nocells; i++) {
 const divs = document.querySelectorAll("div.grid-item");
 
 divs.forEach((child)=>{
-    child.addEventListener("mousedown", () =>{
-        child.style.backgroundColor = colour;
+    child.addEventListener("mouseover", () =>{
+        if(mousebool){
+            console.log("should be working");
+            child.style.backgroundColor = colour;
+        }
     })
 })
 
@@ -71,5 +85,9 @@ function reset(){
 }
 
 resetb.onclick = ()=>{
-    reset();
+    let yn = prompt("Are you sure you want to reset? (yes/no)");
+    yn = yn.toLowerCase();
+    if(yn == "yes" || yn == "y"){
+        reset();
+    }
 }
