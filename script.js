@@ -1,6 +1,6 @@
 //all the elements that we need for now
 const canvasContainer = document.getElementById("canvasContainer");
-const body = document.getElementbyTagName("body");
+const body = document.getElementsByTagName("body");
 const eraser = document.getElementById("eraser");
 const resetb = document.getElementById("reset");
 
@@ -49,7 +49,6 @@ canvasContainer.style.gridTemplateColumns = auto;
 //creates the cells of the canvas 
 for(var i=0; i<nocells; i++) {
     const child = document.createElement("div");
-    child.style.cssText += str;
     const list = child.classList;
     list.add("grid-item");
     let id = "item" + i;

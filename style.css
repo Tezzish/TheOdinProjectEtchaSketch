@@ -14,7 +14,7 @@
 }
 
 .grid-item{
-    background-color:black;
+    background-color:white;
 }
 
 #reset {
@@ -27,4 +27,5 @@
     background-color: red;
     border-width: 12px;
     font-weight:900px;
+    padding: 12px;
 }
