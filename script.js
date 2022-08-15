@@ -3,8 +3,17 @@ class Canvas{
     //constructor
     //takes the number of pixels each side as a parameter
     constructor(pix){
-        //gets the canvas element
-        this.canvasContainer = document.getElementById("canvasContainer");
+        //holds the canvas
+        this.holder = document.getElementById("papa");
+        if(this.holder.hasChildNodes()){
+            this.holder.removeChild(this.holder.firstChild);
+        }
+        //creates the canvas element
+        this.canvasContainer = document.createElement("div");
+        this.canvasContainer.className = "grid-container";
+        this.canvasContainer.id = "canvasContainer";
+        //appends the canvas to the holder
+        this.holder.appendChild(this.canvasContainer);
         //gets the body element
         this.body = document.getElementsByTagName("body").item(0);
         //gets the eraser button
@@ -26,14 +35,14 @@ class Canvas{
     setUp(){
         //checks if the mouse is pressed on the body and allows the user to draw
         //starts drawing if the mouse button is pressed
-        this.body.addEventListener("mousedown", () => {
+        this.canvasContainer.addEventListener("mousedown", () => {
             this.mousebool = true;
             console.log("started");
             event.preventDefault();
         });
 
         //stops drawing if the mouse button is not pressed
-        this.body.addEventListener("mouseup", () => {
+        this.canvasContainer.addEventListener("mouseup", () => {
             this.mousebool = false;
             console.log("ended");
         });
@@ -49,6 +58,7 @@ class Canvas{
                 this.eraserBool = !this.eraserBool;
             }
         }
+
         //squares the number to get the total number of cells in the canvas
         let nocells = Math.pow(this.cells, 2);
         //creates the cells of the canvas 
@@ -60,6 +70,7 @@ class Canvas{
             child.id = id;
             canvasContainer.appendChild(child);
         }
+
         //arranges the cells in the canvas
         let auto = "";
         for(var i = 0; i < this.cells; i++){
@@ -107,5 +118,30 @@ class Canvas{
     }
 }
 
-let canvas = new Canvas(16);
-canvas.setUp();
+class canvasHandler{
+    
+    //empty constructor
+    constructor(){
+        console.log(document.getElementsByClassName("slider").item(0));
+        this.slider = document.getElementsByClassName("slider").item(0);
+        this.slider.oninput = () => {
+            this.handleCanvas(this.slider.value);
+        } 
+    }
+
+    
+
+
+    //function that initializes the canvas
+    handleCanvas(pix){
+        let canvas = new Canvas(pix);
+        canvas.setUp();
+        canvas.reset();
+    }
+}
+
+let c = new canvasHandler();
+c.handleCanvas(16);
+
+
+

@@ -29,3 +29,12 @@
     font-weight:900px;
     padding: 12px;
 }
+
+.flex-container{
+    display:flex;
+    flex: 0;
+}
+
+#right{
+    flex:1;
+}
