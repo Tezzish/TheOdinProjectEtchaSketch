@@ -4,14 +4,13 @@ const body = document.getElementbyTagName("body");
 const eraser = document.getElementById("eraser");
 const resetb = document.getElementById("reset");
 
+//checks if the mouse is pressed on the body
 let mousebool = false;
 
+//used for the erase to allow it to be toggled
 let prev_colour = "black";
 let colour = "black";
-
 let eraserBool = false;
-
-
 
 //gets the number of cells on each side of the canvas
 let cells = prompt("How many pixels for each side");
