@@ -18,21 +18,12 @@
                 <button id="reset" class="flex-item">
                     <b>RESET</b> 
                 </button>
-
-                <!--Slider-->
-                <div class="slidecontainer flex-item">
-                    <h2>
-                        Canvas size:
-                    </h2>
-                    <input type="range" min="1" max="100" value="16" class="slider">
-                    <p id="pixelCount">
-                    </p>
-                </div>
-                <div>
+                <!--Colour area-->
+                <div style = "display: grid; justify-content: center;">
                     <h2>
                         Choose your colour:
                     </h2>
-                    <input id="colourPicker" type="color" id="html5colorpicker" onchange="clickColor(0, -1, -1, 5)" value="#000000" style="width:85%;">
+                    <input id="colourPicker" type="color" id="html5colorpicker" onchange="clickColor(0, -1, -1, 5)" value="#000000" style = "width: 313.383px;">
                     <button id = "rainbowButton" class = "rainbow">
                         <span>R</span>
                         <span>a</span>
@@ -43,7 +34,15 @@
                         <span>w</span>
                     </button>
                 </div>
-                
+                 <!--Slider-->
+                <div class="slidecontainer flex-item">
+                    <h2 style = "color: black">
+                        Canvas size:
+                    </h2>
+                    <input type="range" min="1" max="100" value="16" class="slider">
+                    <p id="pixelCount">
+                    </p>
+                </div>
             </div>
         </div>
         <script src='script.js'></script>

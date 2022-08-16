@@ -42,7 +42,6 @@ class Canvas{
     setUp(){
 
         //checks if the mouse is pressed on the body and allows the user to draw
-
         //starts drawing if the mouse button is pressed
         this.canvasContainer.addEventListener("mousedown", () => {
             this.mousebool = true;

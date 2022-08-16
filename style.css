@@ -3,6 +3,10 @@
     src: url(font/Inconsolata-VariableFont_wdth\,wght.ttf);
 }
 
+body{
+    background-color: black;
+}
+
 #canvasContainer {
     min-width: 720px;
     max-width: 720px;
@@ -84,8 +88,8 @@ button:active{
 }
 
 #right{
-    flex: 0 0 120px;
-    display: inline-block;
+    margin: 64px;
+    min-width:400px;
 }
 
 .flex-container>div{
@@ -97,6 +101,8 @@ h2{
     font-weight: 800;
     font-size: 32px;
     text-align: center;
+    margin:8px;
+    color: white;
 }
 
 p{
@@ -104,11 +110,16 @@ p{
     text-align: center;
     font-size: 24px;
     font-weight: 600;
+    margin:6px;
 }
 
 .slidecontainer{
+    margin-top: 24px;
     display:grid;
     justify-content: center;
+    background-color: aquamarine;
+    border-style: solid;
+    border-radius: 24px;
 }
 
 #colourPicker{
