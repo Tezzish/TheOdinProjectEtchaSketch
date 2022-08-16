@@ -1,3 +1,4 @@
+//Creates the canvas element with the cells
 class Canvas{
 
     //constructor
@@ -5,6 +6,7 @@ class Canvas{
     constructor(pix){
         //holds the canvas
         this.holder = document.getElementById("papa");
+        //deletes any previous canvases in the big div
         if(this.holder.hasChildNodes()){
             this.holder.removeChild(this.holder.firstChild);
         }
@@ -29,10 +31,16 @@ class Canvas{
         this.colour = "black";
         this.eraserBool = false;
         this.divs;
+        //colour picker
+        this.colourPicker = document.getElementById("colourPicker");
+        //rainbow mode button
+        this.rainbowButton = document.getElementById("rainbowButton");
+        this.rainbowBool = false;
     }
 
     //sets up the canvas with the buttons 
     setUp(){
+
         //checks if the mouse is pressed on the body and allows the user to draw
         //starts drawing if the mouse button is pressed
         this.canvasContainer.addEventListener("mousedown", () => {
@@ -61,6 +69,7 @@ class Canvas{
 
         //squares the number to get the total number of cells in the canvas
         let nocells = Math.pow(this.cells, 2);
+
         //creates the cells of the canvas 
         for(var i=0; i<nocells; i++) {
             const child = document.createElement("div");
@@ -81,17 +90,34 @@ class Canvas{
                 auto += "auto ";
             }
         }
+        //makes the cells in the canvas arrange into a square
         canvasContainer.style.gridTemplateColumns = auto;
 
         this.resetb.onclick = ()=>{
             let yn = prompt("Are you sure you want to reset? (yes/no)");
-            yn = yn.toLowerCase();
-            if(yn == "yes" || yn == "y"){
-                this.reset();
+            try{
+                yn = yn.toLowerCase();
+                if(yn == "yes" || yn == "y"){
+                    this.reset();
+                }
+            }
+            catch(err){
+                console.log("User cancelled the request")
             }
         }
-
+        //sets up the cells in the canvas
         this.divsSetUp();
+
+        this.colourPicker.onchange = () => {
+            this.colour = this.colourPicker.value;
+        }
+
+        this.rainbowStyle();
+
+        this.rainbowButton.onclick = () => {
+            this.rainbowBool = !this.rainbowBool;
+            console.log("rainbowBool: " + this.rainbowBool)
+        }
     }
 
     //adds the function to draw to the cells
@@ -101,11 +127,29 @@ class Canvas{
         this.divs.forEach((child)=>{
             child.addEventListener("mouseover", () =>{
                 if(this.mousebool){
-                    child.style.backgroundColor = this.colour;
+                    if(this.rainbowBool){
+                        let randcolour = Math.floor(Math.random() * 16777215);
+                        randcolour = randcolour.toString(16);
+                        randcolour = "#" + randcolour;
+                        console.log(randcolour);
+                        child.style.backgroundColor = randcolour;
+                    }
+                    else{
+                        child.style.backgroundColor = this.colour;
+                    }
                 } 
             })
             child.addEventListener("mousedown", () =>{
-                child.style.backgroundColor = this.colour;
+                if(this.rainbowBool){
+                    let randcolour = Math.floor(Math.random() * 16777215);
+                    randcolour = randcolour.toString(16);
+                    randcolour = "#" + randcolour;
+                    console.log(randcolour);
+                    child.style.backgroundColor = randcolour;
+                }
+                else{
+                    child.style.backgroundColor = this.colour;
+                }
             });
         });
     }
@@ -116,32 +160,50 @@ class Canvas{
             child.style.backgroundColor = "white";
         })
     }
+
+    rainbowStyle(){
+        const colours = ["red", "orange", "yellow", "green", "blue", "indigo", "violet", "pink"];
+        let rainbowText = document.getElementsByClassName("rainbow").item(0).children;
+        for(var i = 0; i < rainbowText.length; i++){
+            let index = i % colours.length;
+            console.log(index);
+            rainbowText.item(i).style.color = colours[index];
+        }
+
+    }
 }
 
+//creates canvases when changing the size
 class canvasHandler{
     
     //empty constructor
     constructor(){
-        console.log(document.getElementsByClassName("slider").item(0));
+        //the slider element
         this.slider = document.getElementsByClassName("slider").item(0);
+        //initializes the canvas with the value in the slider
         this.slider.oninput = () => {
             this.handleCanvas(this.slider.value);
-        } 
+        }
+        //the text element for the slider
+        this.pixelCount = document.getElementById("pixelCount");
     }
-
-    
-
 
     //function that initializes the canvas
     handleCanvas(pix){
         let canvas = new Canvas(pix);
         canvas.setUp();
         canvas.reset();
+        this.updatePixels();
+    }
+
+    //updates the text for the slider
+    updatePixels(){
+        let str = this.slider.value + " x " + this.slider.value;
+        this.pixelCount.textContent = str;
     }
 }
 
+//this part acts as the main
 let c = new canvasHandler();
+//the default size is 16
 c.handleCanvas(16);
-
-
-

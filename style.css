@@ -1,3 +1,12 @@
+@font-face {
+    font-family: "Inconsolata";
+    src: url(font/Inconsolata-VariableFont_wdth\,wght.ttf);
+}
+
+body{
+    background-color: black;
+}
+
 #canvasContainer {
     min-width: 720px;
     max-width: 720px;
@@ -17,24 +26,102 @@
     background-color:white;
 }
 
+button{
+    border-style: solid;
+    border-radius: 24px;
+    border-color: rgb(228, 228, 228);
+    box-shadow: 0px 8px rgb(182, 182, 182);
+    font-size: 48px;
+    border-width: 12px;
+    font-weight: 900;
+    padding: 12px;
+    margin: 12px;
+    text-align: center;
+}
+
+button:active{
+    box-shadow: 0px 0px;
+    transform: translateY(8px);
+}
+
 #reset {
     color: white;
-    border-style: solid;
-    border-radius: 12px;
-    border-color: rgb(201, 201, 201);
-    box-shadow: 0px 12px rgb(112, 112, 112);
-    font-size: 48px;
     background-color: red;
-    border-width: 12px;
-    font-weight:900px;
-    padding: 12px;
+}
+
+#eraser{
+    border-color: rgb(255, 141, 158);
+    color: rgb(255, 141, 158);
+    background-color: white;
+    box-shadow: 0px 8px rgb(168, 56, 73);
+}
+
+#eraser:hover{
+    background-color: whitesmoke;
+}
+
+#eraser:active{
+    background-color:rgb(201, 201, 201);
+    box-shadow: 0px 0px;
+}
+
+#reset:hover{
+    background-color: rgb(200, 0, 0);
+}
+
+#reset:active{
+    background-color: rgb(150, 0, 0);
+}
+
+.rainbow{
+    font-weight: 800;
+}
+
+#rainbowButton{
+    background-color: black;
 }
 
 .flex-container{
     display:flex;
     flex: 0;
+    flex-direction: row;
 }
 
 #right{
-    flex:1;
+    margin: 64px;
+    min-width:400px;
+}
+
+.flex-container>div{
+    flex-grow: 0;
+}
+
+h2{
+    font-family: "Inconsolata";
+    font-weight: 800;
+    font-size: 32px;
+    text-align: center;
+    margin:8px;
+    color: white;
+}
+
+p{
+    font-family: "Inconsolata";
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    margin:6px;
+}
+
+.slidecontainer{
+    margin-top: 24px;
+    display:grid;
+    justify-content: center;
+    background-color: aquamarine;
+    border-style: solid;
+    border-radius: 24px;
+}
+
+#colourPicker{
+    margin: 12px;
 }
