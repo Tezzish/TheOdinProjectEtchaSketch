@@ -8,8 +8,9 @@ class Canvas{
         this.holder = document.getElementById("papa");
         //deletes any previous canvases in the big div
         if(this.holder.hasChildNodes()){
-            //removes the first child since the holder can't have more than one child already
-            this.holder.removeChild(this.holder.firstChild);
+            //removes the last child since the holder can't have more than one child already
+            //and the canvas is held in the last child of the nodelist
+            this.holder.removeChild(this.holder.lastChild);
         }
         //creates the canvas element
         this.canvasContainer = document.createElement("div");
@@ -53,14 +54,12 @@ class Canvas{
         //starts drawing if the mouse button is pressed
         this.canvasContainer.addEventListener("mousedown", () => {
             this.mousebool = true;
-            console.log("started");
             event.preventDefault();
         });
 
         //stops drawing if the mouse button is not pressed
         this.canvasContainer.addEventListener("mouseup", () => {
             this.mousebool = false;
-            console.log("ended");
         });
     
         //eraser logic for the button
@@ -130,7 +129,7 @@ class Canvas{
                 }
             }
             catch(err){
-                console.log("User cancelled the request")
+                console.log("User cancelled the prompt");
             }
         }
         //sets up the cells in the canvas
@@ -145,7 +144,6 @@ class Canvas{
         //the colour turns into a random colour
         this.rainbowButton.onclick = () => {
             this.rainbowBool = !this.rainbowBool;
-            console.log("rainbowBool: " + this.rainbowBool)
             this.erBool = false;
         }
     }
@@ -161,7 +159,6 @@ class Canvas{
                         let randcolour = Math.floor(Math.random() * 16777215);
                         randcolour = randcolour.toString(16);
                         randcolour = "#" + randcolour;
-                        console.log(randcolour);
                         child.style.backgroundColor = randcolour;
                     }
                     else{
@@ -174,7 +171,6 @@ class Canvas{
                     let randcolour = Math.floor(Math.random() * 16777215);
                     randcolour = randcolour.toString(16);
                     randcolour = "#" + randcolour;
-                    console.log(randcolour);
                     child.style.backgroundColor = randcolour;
                 }
                 else{
@@ -197,7 +193,6 @@ class Canvas{
         let rainbowText = document.getElementsByClassName("rainbow").item(0).children;
         for(var i = 0; i < rainbowText.length; i++){
             let index = i % colours.length;
-            console.log(index);
             rainbowText.item(i).style.color = colours[index];
         }
 
