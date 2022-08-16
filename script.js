@@ -31,6 +31,11 @@ class Canvas{
         this.colour = "black";
         this.eraserBool = false;
         this.divs;
+        //colour picker
+        this.colourPicker = document.getElementById("colourPicker");
+        //rainbow mode button
+        this.rainbowButton = document.getElementById("rainbowButton");
+        this.rainbowBool = false;
     }
 
     //sets up the canvas with the buttons 
@@ -103,6 +108,17 @@ class Canvas{
         }
         //sets up the cells in the canvas
         this.divsSetUp();
+
+        this.colourPicker.onchange = () => {
+            this.colour = this.colourPicker.value;
+        }
+
+        this.rainbowStyle();
+
+        this.rainbowButton.onclick = () => {
+            this.rainbowBool = !this.rainbowBool;
+            console.log("rainbowBool: " + this.rainbowBool)
+        }
     }
 
     //adds the function to draw to the cells
@@ -112,11 +128,29 @@ class Canvas{
         this.divs.forEach((child)=>{
             child.addEventListener("mouseover", () =>{
                 if(this.mousebool){
-                    child.style.backgroundColor = this.colour;
+                    if(this.rainbowBool){
+                        let randcolour = Math.floor(Math.random() * 16777215);
+                        randcolour = randcolour.toString(16);
+                        randcolour = "#" + randcolour;
+                        console.log(randcolour);
+                        child.style.backgroundColor = randcolour;
+                    }
+                    else{
+                        child.style.backgroundColor = this.colour;
+                    }
                 } 
             })
             child.addEventListener("mousedown", () =>{
-                child.style.backgroundColor = this.colour;
+                if(this.rainbowBool){
+                    let randcolour = Math.floor(Math.random() * 16777215);
+                    randcolour = randcolour.toString(16);
+                    randcolour = "#" + randcolour;
+                    console.log(randcolour);
+                    child.style.backgroundColor = randcolour;
+                }
+                else{
+                    child.style.backgroundColor = this.colour;
+                }
             });
         });
     }
@@ -126,6 +160,17 @@ class Canvas{
         this.divs.forEach((child)=>{
             child.style.backgroundColor = "white";
         })
+    }
+
+    rainbowStyle(){
+        const colours = ["red", "orange", "yellow", "green", "blue", "indigo", "violet", "pink"];
+        let rainbowText = document.getElementsByClassName("rainbow").item(0).children;
+        for(var i = 0; i < rainbowText.length; i++){
+            let index = i % colours.length;
+            console.log(index);
+            rainbowText.item(i).style.color = colours[index];
+        }
+
     }
 }
 
