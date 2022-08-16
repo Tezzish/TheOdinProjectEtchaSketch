@@ -115,6 +115,7 @@ class Canvas{
         this.divs.forEach((child)=>{
             child.style.backgroundColor = "white";
         })
+        this.rainbowBool = false;
     }
 }
 
