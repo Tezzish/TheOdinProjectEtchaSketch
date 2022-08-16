@@ -8,14 +8,15 @@ body{
 }
 
 #canvasContainer {
+    margin-left: 24px;
     min-width: 720px;
     max-width: 720px;
     background-color: white;
     min-height: 720px;
     max-height: 720px;
     border-style: solid;
-    border-width:5px;
-    border-color:black;
+    border-width:4px;
+    border-color:gray;
 }
 
 .grid-container{
@@ -124,4 +125,11 @@ p{
 
 #colourPicker{
     margin: 12px;
+}
+
+h1{
+    color: white;
+    font-size: 48px;
+    font-family: "Inconsolata";
+    margin-left: 32px;
 }
