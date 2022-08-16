@@ -8,11 +8,14 @@ class Canvas{
         this.holder = document.getElementById("papa");
         //deletes any previous canvases in the big div
         if(this.holder.hasChildNodes()){
+            //removes the first child since the holder can't have more than one child already
             this.holder.removeChild(this.holder.firstChild);
         }
         //creates the canvas element
         this.canvasContainer = document.createElement("div");
+        //takes on the class grid container
         this.canvasContainer.className = "grid-container";
+        //takes on the id canvasContainer
         this.canvasContainer.id = "canvasContainer";
         //appends the canvas to the holder
         this.holder.appendChild(this.canvasContainer);
@@ -29,13 +32,18 @@ class Canvas{
         //used for the eraser function
         this.prev_colour = "black";
         this.colour = "black";
+        //true if eraser mode is enabled
         this.eraserBool = false;
+        //the HTMLCollection for the cells that gets defined in the divsSetUp
         this.divs;
         //colour picker
         this.colourPicker = document.getElementById("colourPicker");
         //rainbow mode button
         this.rainbowButton = document.getElementById("rainbowButton");
+        //rainbow boolean which is true if rainbow mode is active and false if it isn't
         this.rainbowBool = false;
+        //to go back to rainbow mode after the eraser is used
+        this.erBool = false;
     }
 
     //sets up the canvas with the buttons 
@@ -57,11 +65,31 @@ class Canvas{
     
         //eraser logic for the button
         this.eraser.onclick = () => {
+
+            //eraser mode turned off
             if(this.eraserBool){
+                //the current colour is set to what it was before the button was clicked
                 this.colour = this.prev_colour;
+                //eraser mode is turned off
                 this.eraserBool = !this.eraserBool;
+                //makes sure the rainbow mode is turned on after the eraser mode is turned off
+                if(this.erBool){
+                    this.rainbowBool = true;
+                }
+                else{
+                    this.rainbowBool = false;
+                }
+                this.erBool = false;
             }
+
+            //eraser mode turned on
             else{
+                if(this.rainbowBool) {
+                    //rainbow mode is turned off for the moment
+                    this.rainbowBool = !this.rainbowBool;
+                    //makes sure the rainbow mode is turned on after the eraser mode is turned off
+                    this.erBool = true;
+                }
                 this.colour = "white";
                 this.eraserBool = !this.eraserBool;
             }
@@ -114,9 +142,11 @@ class Canvas{
 
         this.rainbowStyle();
 
+        //the colour turns into a random colour
         this.rainbowButton.onclick = () => {
             this.rainbowBool = !this.rainbowBool;
             console.log("rainbowBool: " + this.rainbowBool)
+            this.erBool = false;
         }
     }
 
