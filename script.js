@@ -64,21 +64,17 @@ class Canvas{
     
         //eraser logic for the button
         this.eraser.onclick = () => {
-
-            //eraser mode turned off
+            //if the eraser mode was already on
             if(this.eraserBool){
-                //the current colour is set to what it was before the button was clicked
-                this.colour = this.prev_colour;
-                //eraser mode is turned off
-                this.eraserBool = !this.eraserBool;
-                //makes sure the rainbow mode is turned on after the eraser mode is turned off
-                if(this.erBool){
+                this.colour = this.prev_colour; //changes the colour back to the previous colour
+                this.eraserBool = false; //turns off the eraser mode
+                if(this.erBool){ //checks if the rainbow mode was on before the eraser mode was turned on
                     this.rainbowBool = true;
                 }
                 else{
                     this.rainbowBool = false;
                 }
-                this.erBool = false;
+                this.erBool = false; 
             }
 
             //eraser mode turned on
@@ -90,7 +86,7 @@ class Canvas{
                     this.erBool = true;
                 }
                 this.colour = "white";
-                this.eraserBool = !this.eraserBool;
+                this.eraserBool = true;
             }
         }
 
